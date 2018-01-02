@@ -13,7 +13,7 @@
 
   /* Grid gapy*/
   --grid-column-gap: 1.5rem;
-  --grid-row-gap: 1.5rem;
+  --grid-row-gap: 2rem;
 
   /* Fonty */
   --titles-font: 'Baloo';
@@ -104,7 +104,7 @@ body {
     padding: var(--button-vertical-padding);
   }
 
-  .guess-value {
+  .guess-btn {
     background-color: var(--text-clr);
     border: none;
     border-radius: var(--border-radius);
@@ -113,6 +113,25 @@ body {
     font-family: var(--titles-font);
     font-size: var(--main-font-size);
     padding: var(--button-vertical-padding) var(--button-horizontal-padding);
+  }
+
+  .message {
+    color: rgb(199, 86, 86);
+    font-size: var(--main-font-size);
+    text-align: center;
+  }
+
+  .error {
+    color: rgb(199, 86, 86);
+  }
+
+  .win {
+    color: var(--background-clr);
+    font-size: var(--subtitle-font-size);
+  }
+
+  .box-shadow-win {
+    box-shadow: 0 0 15px 5px var(--text-clr);
   }
 }
 
