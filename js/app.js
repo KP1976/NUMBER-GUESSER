@@ -10,7 +10,7 @@ FUNKCJONALNOŚĆ GRY
 // Wartości gry
 let min = 1, 
     max = 10,
-    winningNum = 2,
+    winningNum = getRandomNum(min, max),
     guessesLeft = 3;
 
 // Zmienne
@@ -24,6 +24,13 @@ const game = document.querySelector('.box'),
 // Podłączenie min i max do spanów
 minNum.textContent = min;
 maxNum.textContent = max;
+
+// Graj ponownie - nasłuchiwanie zdarzenia
+game.addEventListener('mousedown', e => {
+  if(e.target.classList[1] === 'play-again') {
+    window.location.reload();
+  }
+});
 
 // Nasłuchiwanie na zdarzenie kliknięcia
 guessBtn.addEventListener('click', () => {
@@ -82,6 +89,15 @@ function gameOver(won, msg) {
 
   // Wiadomość o wygranej
   setMessage(msg);
+
+  // Czy grać znowu?
+  guessBtn.textContent = 'Graj ponownie';
+  guessBtn.classList.add('play-again');
+}
+
+// Losowanie liczby do trafienia
+function getRandomNum(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 // Ustawienie wiadomości

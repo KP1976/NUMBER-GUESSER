@@ -87,6 +87,7 @@ body {
     grid-auto-flow: row;
     grid-row-gap: var(--grid-row-gap);
     justify-content: center;
+    justify-items: center;
     text-align: center;
   }
   
@@ -100,8 +101,11 @@ body {
     border-radius: var(--border-radius);
     color: var(--background-clr-secondary);
     font-family: var(--titles-font);
-    font-size: var(--main-font-size);
-    padding: var(--button-vertical-padding);
+    font-size: calc(var(--main-font-size) * 2);
+    height: 4rem;
+    padding-left: 1.5rem;
+    text-align: center;
+    width: 100px;
   }
 
   .guess-btn {
