@@ -130,8 +130,17 @@ body {
     font-size: var(--subtitle-font-size);
   }
 
+  .lost {
+    color: rgb(199, 86, 86);
+    font-size: var(--subtitle-font-size);
+  }
+
   .box-shadow-win {
     box-shadow: 0 0 15px 5px var(--text-clr);
+  }
+
+  .box-shadow-lost {
+    box-shadow: 0 0 15px 5px rgb(199, 86, 86);
   }
 }
 

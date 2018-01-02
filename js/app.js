@@ -36,21 +36,55 @@ guessBtn.addEventListener('click', () => {
 
   // Sprawdzenie czy gracz wygrał
   if(guess === winningNum) {
-    // Wyłączenie inputa
-    guessInput.disabled = true;
-
-    // Zmiana bordera
-    guessInput.classList.add('box-shadow-win');
-
-    // Wiadomość o wygranej
-    setMessage(`WYGRAŁEŚ!!! ${winningNum} to trafiona liczba!`, 'win');
+    // Koniec gry - wygrana
+    gameOver(true, `WYGRAŁEŚ!!! ${winningNum} to trafiona liczba!`);
   } else {
-    
+    // Niewłaściwy numer
+    guessesLeft -= 1;
+
+    if(guessesLeft === 0) {
+      // Koniec gry - przegrana
+      gameOver(false, `Gra skończona!!! Przegrałeś! Prawidłowa liczba to ${winningNum}!`);
+    } else {
+      // Gra jest kontynuowana - zła odpowiedź
+
+      // Zmiana bordera
+      guessInput.classList.remove('box-shadow-win');
+      guessInput.classList.add('box-shadow-lost');
+
+      // Wyczyszczenie inputa
+      guessInput.value = '';
+
+      // Komunikat o spudłowaniu i ile zostało jeszcze trafień
+      setMessage(`${guess} to zła odpowiedź! Zostało Ci ${guessesLeft} trafień.`, 'lost');
+    }
   }
 });
+
+// Funkcja - koniec gry
+function gameOver(won, msg) {
+  // Wyłączenie inputa
+  guessInput.disabled = true;
+
+  // Zmiana bordera
+  if(won === true) {
+    message.classList.add('win');
+    guessInput.classList.add('box-shadow-win');
+    message.classList.remove('lost');
+    guessInput.classList.remove('box-shadow-lost');
+  } else {
+    message.classList.add('lost');
+    guessInput.classList.add('box-shadow-lost');
+    message.classList.remove('win');
+    guessInput.classList.remove('box-shadow-win');
+
+  }
+
+  // Wiadomość o wygranej
+  setMessage(msg);
+}
 
 // Ustawienie wiadomości
 function setMessage(msg, error) {
   message.textContent = msg;
-  message.classList.add(error);
-}
+ }
