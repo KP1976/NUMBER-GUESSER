@@ -10,6 +10,12 @@ FUNKCJONALNOŚĆ GRY
 let GuessNumber = (function() {
   let s = {};
 
+  // Wartości gry
+  let min = 1, 
+  max = 10,
+  winningNum = getRandomNum(min, max),
+  guessesLeft = 3;
+
   // Graj ponownie - nasłuchiwanie zdarzenia
   function playAgain(e) {
     if(e.target.classList[1] === 'play-again') {
@@ -92,12 +98,6 @@ let GuessNumber = (function() {
   /* FUNKCJA INICJALIZACYJNA ZADANIA */
   function init(config) {
     s = config;
-
-    // Wartości gry
-    let min = 1, 
-    max = 10,
-    winningNum = getRandomNum(min, max),
-    guessesLeft = 3;
 
     // Podłączenie min i max do spanów
     s.minNum.textContent = min;
