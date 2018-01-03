@@ -10,24 +10,6 @@ FUNKCJONALNOŚĆ GRY
 let GuessNumber = (function() {
   let s = {};
 
-  // Wartości gry
-  let min = 1, 
-      max = 10,
-      winningNum = getRandomNum(min, max),
-      guessesLeft = 3;
-
-  // // Zmienne
-  // const game = document.querySelector('.box'),
-  //       minNum = document.querySelector('.min-num'),
-  //       maxNum = document.querySelector('.max-num'),
-  //       guessBtn = document.querySelector('.guess-btn'),
-  //       guessInput = document.querySelector('.guess-input'),
-  //       message = document.querySelector('.message');
-
-  // Podłączenie min i max do spanów
-  // s.minNum.textContent = min;
-  // s.maxNum.textContent = max;
-
   // Graj ponownie - nasłuchiwanie zdarzenia
   function playAgain(e) {
     if(e.target.classList[1] === 'play-again') {
