@@ -7,29 +7,30 @@ FUNKCJONALNOŚĆ GRY
 - Gracz ma możliwość ponownej gry
 */
 
-let GuessNumber = (function() {
-  let s = {};
+let GuessNumber = (_=> {
+  let vars = {};
 
-  // Wartości gry
+  // Wartości gry: minimum, maksimum, funkcja losująca liczby, ile razy można zgadnąć
   let min = 1, 
   max = 10,
   winningNum = getRandomNum(min, max),
   guessesLeft = 3;
 
-  // Graj ponownie - nasłuchiwanie zdarzenia
+  // Funkcja graj ponownie
   function playAgain(e) {
     if(e.target.classList[1] === 'play-again') {
       window.location.reload();
     }
   }
 
-  // Nasłuchiwanie na zdarzenie kliknięcia
+  // Funkcja sprawdza czy gracz wygrał czy przegrał
   function startGuessing() {
-    let guess = parseInt(s.guessInput.value); // zamiana stringa na liczbę
+    let guess = parseInt(vars.guessInput.value); 
 
     // Walidacja
     if(isNaN(guess) || guess < min || guess > max) {
-      setMessage(`Wpisz numer pomiędzy ${min} a ${max}!!!`, 'error');
+      vars.message.textContent = (`Wpisz numer pomiędzy ${min} a ${max}!!!`);
+      return;
     }
 
     // Sprawdzenie czy gracz wygrał
@@ -47,14 +48,14 @@ let GuessNumber = (function() {
         // Gra jest kontynuowana - zła odpowiedź
 
         // Zmiana bordera
-        s.guessInput.classList.remove('box-shadow-win');
-        s.guessInput.classList.add('box-shadow-lost');
+        vars.guessInput.classList.remove('box-shadow-win');
+        vars.guessInput.classList.add('box-shadow-lost');
 
         // Wyczyszczenie inputa
-        s.guessInput.value = '';
+        vars.guessInput.value = '';
 
         // Komunikat o spudłowaniu i ile zostało jeszcze trafień
-        setMessage(`${guess} to zła odpowiedź! Zostało Ci ${guessesLeft} trafień.`, 'lost');
+        vars.message.textContent = (`${guess} to zła odpowiedź! Zostało Ci ${guessesLeft} trafień.`);
       }
     }
   }
@@ -62,27 +63,27 @@ let GuessNumber = (function() {
   // Funkcja - koniec gry
   function gameOver(won, msg) {
     // Wyłączenie inputa
-    s.guessInput.disabled = true;
+    vars.guessInput.disabled = true;
 
     // Zmiana bordera
-    if(won === true) {
-      s.message.classList.add('win');
-      s.guessInput.classList.add('box-shadow-win');
-      s.message.classList.remove('lost');
-      s.guessInput.classList.remove('box-shadow-lost');
+    if(won) {
+      vars.message.classList.add('win');
+      vars.guessInput.classList.add('box-shadow-win');
+      vars.message.classList.remove('lost');
+      vars.guessInput.classList.remove('box-shadow-lost');
     } else {
-      s.message.classList.add('lost');
-      s.guessInput.classList.add('box-shadow-lost');
-      s.message.classList.remove('win');
-      s.guessInput.classList.remove('box-shadow-win');
+      vars.message.classList.add('lost');
+      vars.guessInput.classList.add('box-shadow-lost');
+      vars.message.classList.remove('win');
+      vars.guessInput.classList.remove('box-shadow-win');
     }
 
     // Wiadomość o wygranej
-    setMessage(msg);
+    vars.message.textContent = msg;
 
-    // Czy grać znowu?
-    s.guessBtn.textContent = 'Graj ponownie';
-    s.guessBtn.classList.add('play-again');
+    // Zmiana tekstu inputa na Graj ponownie
+    vars.guessBtn.textContent = 'Graj ponownie';
+    vars.guessBtn.classList.add('play-again');
   }
 
   // Losowanie liczby do trafienia
@@ -90,21 +91,15 @@ let GuessNumber = (function() {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  // Ustawienie wiadomości
-  function setMessage(msg) {
-    s.message.textContent = msg;
-  }
-
   /* FUNKCJA INICJALIZACYJNA ZADANIA */
-  function init(config) {
-    s = config;
+  function init(_vars) {
+    vars = _vars;
 
-    // Podłączenie min i max do spanów
-    s.minNum.textContent = min;
-    s.maxNum.textContent = max;
+    vars.minNum.textContent = min;
+    vars.maxNum.textContent = max;
 
-    s.game.addEventListener('mousedown', playAgain);
-    s.guessBtn.addEventListener('click', startGuessing);
+    vars.game.addEventListener('mousedown', playAgain);
+    vars.guessBtn.addEventListener('click', startGuessing);
   }
 
   return {

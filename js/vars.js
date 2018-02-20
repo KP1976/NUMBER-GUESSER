@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', _=> {
   GuessNumber.init({
     game: document.querySelector('.box'),
     minNum: document.querySelector('.min-num'),

@@ -125,10 +125,6 @@ body {
     text-align: center;
   }
 
-  .error {
-    color: rgb(199, 86, 86);
-  }
-
   .win {
     color: var(--background-clr);
     font-size: var(--subtitle-font-size);
