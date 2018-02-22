@@ -1,10 +1,10 @@
-document.addEventListener('DOMContentLoaded', _=> {
+document.addEventListener('DOMContentLoaded', function() {
   GuessNumber.init({
-    game: document.querySelector('.box'),
-    minNum: document.querySelector('.min-num'),
-    maxNum: document.querySelector('.max-num'),
-    guessBtn: document.querySelector('.guess-btn'),
-    guessInput: document.querySelector('.guess-input'),
-    message: document.querySelector('.message')
+    game: this.querySelector('.box'),
+    minNum: this.querySelector('.min-num'),
+    maxNum: this.querySelector('.max-num'),
+    guessBtn: this.querySelector('.guess-btn'),
+    guessInput: this.querySelector('.guess-input'),
+    message: this.querySelector('.message')
   });
 });
