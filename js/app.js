@@ -8,8 +8,6 @@ FUNKCJONALNOŚĆ GRY
 */
 
 let GuessNumber = (_=> {
-  let vars = {};
-
   // Wartości gry: minimum, maksimum, funkcja losująca liczby, ile razy można zgadnąć
   let min = 1, 
   max = 10,
